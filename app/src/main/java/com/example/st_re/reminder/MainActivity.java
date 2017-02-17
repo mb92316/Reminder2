@@ -2,7 +2,6 @@ package com.example.st_re.reminder;
 
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -101,10 +100,10 @@ public class MainActivity extends AppCompatActivity implements
         }
         long diff = d1.getTime() - date.getTime();
         System.out.println(diff);
-        scheduleNotification(getNotification("hello"), diff);
+        scheduleNotification("hello", diff);
     }
 
-    private void scheduleNotification(Notification notification, long delay) {
+    private void scheduleNotification(String notification, long delay) {
 
         Intent notificationIntent = new Intent(this, NotificationPublisher.class);
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 20);
@@ -115,11 +114,4 @@ public class MainActivity extends AppCompatActivity implements
         alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + delay, pendingIntent);
     }
 
-    private Notification getNotification(String content) {
-        Notification.Builder builder = new Notification.Builder(this);
-        builder.setContentTitle("Scheduled Notification");
-        builder.setContentText(content);
-        builder.setSmallIcon(R.drawable.ic_launcher);
-        return builder.build();
-    }
 }
