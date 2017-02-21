@@ -14,12 +14,10 @@ public  class TTS extends Service implements TextToSpeech.OnInitListener{
     @Override
     public void onStart(Intent intent, int startId) {
         if(intent != null){
-           spokenText = intent.getStringExtra("hello");
-
+           spokenText = intent.getStringExtra("namaste");
             mTts = new TextToSpeech(this, this);
         }
     }
-
 
     @Override
     public void onInit(int status) {
